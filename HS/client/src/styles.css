@@ -1,0 +1,841 @@
+/* src/styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #0d6efd;
+  --sidebar-bg: #1e293b;
+  --sidebar-hover: #334155;
+  --main-bg: #f1f5f9;
+  --card-bg: #ffffff;
+  --nav-bg: #ffffff;
+  --text-color: #0f172a;
+  --nav-link-color: #cbd5e1;
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="dark"] {
+  --primary-color: #5b8dff;
+  --sidebar-bg: #0b1220;
+  --sidebar-hover: #182033;
+  --main-bg: #0f172a;
+  --card-bg: #111827;
+  --nav-bg: #0b1220;
+  --text-color: #e5e7eb;
+  --nav-link-color: #94a3b8;
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--main-bg);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  height: 100vh;
+  position: fixed;
+  width: 260px;
+  background-color: var(--sidebar-bg);
+  color: #fff;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar-brand {
+  padding: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar-nav {
+  padding: 1rem 0;
+}
+
+.nav-link {
+  color: var(--nav-link-color);
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.nav-link:hover, .nav-link.active {
+  background-color: var(--sidebar-hover);
+  color: #fff;
+  border-left: 4px solid var(--primary-color);
+}
+
+/* Main Content Layout */
+.main-content {
+  margin-left: 260px;
+  min-height: 100vh;
+  background-color: var(--main-bg);
+}
+
+.top-navbar {
+  background-color: var(--nav-bg);
+  padding: 1rem 2rem;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.content-wrapper {
+  padding: 2rem;
+}
+
+/* Cards */
+.dashboard-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  padding: 1.5rem;
+  transition: transform 0.2s;
+  border: none;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-3px);
+}
+
+.stat-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+/* Tables */
+.table-container {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--card-shadow);
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+  }
+  .sidebar,
+  .top-navbar,
+  .btn,
+  .sidebar-overlay {
+    display: none !important;
+  }
+  .main-content {
+    margin: 0;
+    padding: 0;
+  }
+  .content-wrapper {
+    padding: 0.5in;
+  }
+  .dashboard-card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+  .patient-report-print .dashboard-card {
+    break-inside: avoid;
+    margin-bottom: 12px;
+  }
+  .patient-report-print table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .patient-report-print th,
+  .patient-report-print td {
+    border: 1px solid #000;
+    padding: 6px;
+    color: #000;
+  }
+  .patient-report-print .btn {
+    display: none !important;
+  }
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.table-responsive {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Auth Pages */
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 450px;
+  background: #fff;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    width: 250px;
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .main-content {
+    margin-left: 0;
+  }
+}
+
+/* --- About Page Styles --- */
+.about-hero {
+  background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+  padding: 4rem 0;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(13, 110, 253, 0.2);
+}
+
+.about-card {
+  border-radius: 15px;
+  transition: transform 0.3s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-10px);
+}
+
+.icon-box {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.feature-card {
+  border-radius: 15px;
+  border: 1px solid rgba(0,0,0,0.03) !important;
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  border-color: rgba(13, 110, 253, 0.3) !important;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+}
+
+/* --- Contact Page Styles --- */
+.contact-info-card {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border-radius: 15px;
+  border: none;
+}
+
+.contact-icon-circle {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .about-hero {
+    padding: 2rem 0;
+  }
+  
+  .contact-info-card {
+    border-radius: 15px 15px 0 0;
+  }
+}
+/* --- Reports Page Specific Styles --- */
+
+/* Bar Chart Animation */
+.bar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bar {
+  background-image: linear-gradient(180deg, #0d6efd 0%, #0a58ca 100%);
+  box-shadow: 0 4px 6px rgba(13, 110, 253, 0.2);
+  transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bar:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+/* CSS Donut Chart */
+.donut-chart {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  /* Conic gradient simulates the donut chart sections */
+  background: conic-gradient(
+    #0d6efd 0% 45%, 
+    #6f42c1 45% 80%, 
+    #fd7e14 80% 100%
+  );
+}
+
+.donut-inner {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Activity Dot */
+.activity-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* List group border override for cards */
+.list-group-flush {
+  border-radius: 0 0 15px 15px;
+}
+
+/* Custom text colors for bootstrap progress variants if needed */
+.progress {
+  background-color: #f1f5f9;
+}
+
+/* Add to src/styles.css */
+
+.doctor-card {
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+}
+
+.doctor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+  cursor: pointer;
+}
+
+.doctor-avatar {
+  width: 80px;
+  height: 80px;
+  background-color: #f1f5f9;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+/* --- Dashboard Enhancements --- */
+
+.dashboard-wrapper {
+  width: 100%;
+}
+
+/* Welcome Header */
+.dashboard-header h2 {
+  font-weight: 700;
+}
+
+/* Quick Action Buttons */
+.quick-action-btn {
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  color: #495057;
+  transition: all 0.3s ease;
+}
+
+.quick-action-btn:hover {
+  border-color: #0d6efd;
+  color: #0d6efd;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* Avatar Circles for Tables */
+.avatar-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #e9ecef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #495057;
+  font-size: 0.9rem;
+}
+
+.avatar-circle-sm {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #0d6efd;
+  font-size: 0.8rem;
+}
+
+/* Chart Bars Animation */
+.bar-chart-bar {
+  transition: height 0.5s ease-in-out;
+}
+
+/* Responsive Table Styles */
+.dashboard-card {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Remove default table borders inside dashboard cards */
+.dashboard-card .table th, .dashboard-card .table td {
+  border-top: 1px solid #f1f5f9;
+}
+
+.dashboard-card .table thead th {
+  border-bottom: 0;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Progress Bars */
+.progress {
+  background-color: #f1f5f9;
+}
+
+/* List Group overrides for Dashboard */
+.list-group-item:last-child {
+  border-bottom: 0;
+}
+/* --- MODERN DASHBOARD ENHANCEMENTS --- */
+
+/* Hero Section */
+.dashboard-hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  padding: 2rem;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+}
+
+.hero-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+/* Blobs for abstract decoration */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+}
+.blob-1 { width: 300px; height: 300px; top: -50px; right: -50px; }
+.blob-2 { width: 150px; height: 150px; bottom: -20px; right: 150px; }
+
+/* Quick Action Cards */
+.quick-action-row { margin-top: -30px; position: relative; z-index: 10; }
+
+.quick-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,0.03);
+}
+
+.quick-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.qc-icon { font-size: 1.5rem; margin-bottom: 0.5rem; display: block; }
+.quick-card-1 .qc-icon { color: #0d6efd; }
+.quick-card-2 .qc-icon { color: #6f42c1; }
+.quick-card-3 .qc-icon { color: #198754; }
+.quick-card-4 .qc-icon { color: #fd7e14; }
+
+/* Stat Cards (Colored left border) */
+.stat-card {
+  background: white;
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+  border-left: 5px solid transparent;
+  transition: transform 0.2s;
+}
+
+.stat-card:hover { transform: translateY(-3px); }
+
+.stat-card-1 { border-left-color: #0d6efd; }
+.stat-card-2 { border-left-color: #6f42c1; }
+.stat-card-3 { border-left-color: #198754; }
+.stat-card-4 { border-left-color: #fd7e14; }
+
+.stat-body { display: flex; justify-content: space-between; align-items: center; }
+.stat-info h2 { margin: 0; font-weight: 800; font-size: 1.8rem; }
+.stat-info span { font-size: 0.9rem; color: #6c757d; }
+.stat-icon-box { 
+  width: 50px; height: 50px; border-radius: 50%; 
+  display: flex; align-items: center; justify-content: center; 
+  font-size: 1.2rem; opacity: 0.8;
+}
+.stat-card-1 .stat-icon-box { background: #e7f1ff; color: #0d6efd; }
+.stat-card-2 .stat-icon-box { background: #f3e5f5; color: #6f42c1; }
+.stat-card-3 .stat-icon-box { background: #e8f5e9; color: #198754; }
+.stat-card-4 .stat-icon-box { background: #fff3e0; color: #fd7e14; }
+
+.stat-footer { margin-top: 1rem; font-size: 0.85rem; }
+
+/* Modern Card Styling */
+.modern-card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+  border: 1px solid rgba(0,0,0,0.03);
+}
+
+/* Bar Chart */
+.modern-bar {
+  width: 40px;
+  background: linear-gradient(180deg, #0d6efd 0%, #a2c6ff 100%);
+  border-radius: 8px;
+  transition: height 0.5s ease;
+}
+
+/* Timeline */
+.activity-timeline { position: relative; padding-left: 20px; }
+
+.timeline-item {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 25px;
+  border-left: 2px solid #f0f0f0;
+}
+
+.timeline-item:last-child { border-left: 2px solid transparent; margin-bottom: 0; }
+
+.timeline-icon {
+  position: absolute;
+  left: -18px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.8rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.timeline-content h6 { margin-bottom: 2px; font-weight: 600; }
+.timeline-content .time { font-size: 0.75rem; color: #adb5bd; }
+
+/* Table Enhancements */
+.modern-table th { font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; color: #6c757d; }
+.modern-table td { vertical-align: middle; border-color: #f1f5f9; }
+
+/* Avatar */
+.avatar-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+/* --- PROFESSIONAL DASHBOARD STYLES --- */
+
+/* Base Wrapper */
+.dashboard-pro {
+  background-color: #f8fafc; /* Very light gray background */
+  padding: 2rem;
+  border-radius: 0 20px 20px 0;
+  min-height: 100vh;
+}
+
+/* Typography Tweaks */
+h2, h3, h5 { color: #1e293b; font-family: 'Inter', sans-serif; }
+
+/* Button & Card Shadows */
+.btn-shadow { 
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
+  transition: transform 0.2s;
+}
+.btn-shadow:hover { transform: translateY(-1px); }
+
+.btn-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+}
+
+/* Stats Cards */
+.stat-card-pro {
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s;
+}
+
+.stat-card-pro:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.stat-icon-pro {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+/* Table Styles */
+.table thead th { border-bottom: 1px solid #e2e8f0 !important; background-color: transparent !important; color: #64748b; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.table tbody tr { border-color: #f1f5f9; transition: background 0.2s; }
+.table tbody tr:hover { background-color: #f8fafc; }
+
+/* Avatar Circle */
+.avatar-initials {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px; /* Square rounded looks more professional than full circle for tables */
+  background-color: #e2e8f0;
+  color: #475569;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+/* --- RESPONSIVE SIDEBAR & NAVBAR FIXES --- */
+
+/* 1. Overlay for mobile (Dark background) */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999; /* Behind sidebar, above content */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+/* 2. Close Button inside Sidebar */
+.sidebar-close-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  position: absolute;
+  right: 15px;
+  top: 20px;
+}
+
+/* 3. Mobile Behavior (Screens < 768px) */
+@media (max-width: 768px) {
+  /* Hide sidebar by default */
+  .sidebar {
+    transform: translateX(-100%);
+    position: fixed;
+    z-index: 1050; /* High z-index to be on top */
+  }
+  
+  /* Show sidebar when 'open' class is added */
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* Remove margin-left on main content for full width */
+  .main-content {
+    margin-left: 0 !important;
+  }
+}
+
+/* 4. Desktop Behavior (Screens > 768px) */
+@media (min-width: 769px) {
+  /* Ensure overlay is never visible on desktop */
+  .sidebar-overlay {
+    display: none !important;
+  }
+  
+  /* Sidebar is static on desktop */
+  .sidebar {
+    transform: translateX(0);
+    position: fixed;
+  }
+
+  /* Main content has margin for sidebar */
+  .main-content {
+    margin-left: 260px;
+  }
+}
+
+/* --- RED LOGOUT BUTTON FIX --- */
+.dropdown-item.text-danger:hover {
+    background-color: #dc3545; /* Red background on hover */
+    color: #fff !important;     /* White text on hover */
+}
+
+/* Remove default Bootstrap toggle caret if you want it cleaner */
+.dropdown-toggle::after {
+    display: none;
+}
+
+/* Add to src/styles.css */
+
+/* Submenu Styles */
+.nav-submenu {
+  width: 100%;
+}
+
+.submenu-toggle {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.submenu-toggle .submenu-icon {
+  font-size: 0.8rem;
+  transition: transform 0.3s;
+}
+
+.submenu-toggle.open .submenu-icon {
+  transform: rotate(90deg);
+}
+
+.submenu-items {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.submenu-items.show {
+  max-height: 500px;
+  transition: max-height 0.3s ease-in;
+}
+
+.submenu-link {
+  padding-left: 2.5rem !important;
+  font-size: 0.9rem;
+}
+
+/* Print Styles */
+@media print {
+  .sidebar,
+  .navbar,
+  button,
+  .btn,
+  .d-flex.gap-2,
+  .modal,
+  .modal-backdrop {
+    display: none !important;
+  }
+  
+  .content-wrapper {
+    margin-left: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  
+  .table {
+    font-size: 12px;
+  }
+}
